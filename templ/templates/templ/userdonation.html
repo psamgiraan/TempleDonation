@@ -1,0 +1,164 @@
+{% load static %}
+{% if user_obj %}
+
+<! DOCTYPE html>
+<html lang="en">  
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+
+    <!-- CSS -->
+<!--    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">-->
+    <link rel="stylesheet" href="{% static 'css/receipt_print_styling.css' %}">
+<!--     <link rel="stylesheet" href="{% static 'css/style.css'%}">-->
+<!--    <script src="{% static 'js/bootstrap.min.js' %}"></script>-->
+    <title>Donation Receipt</title>
+    <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 50%
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+
+   
+<body>
+
+    <div class="header" >
+<!--        <img  src="Mandir-Image.jpg" alt="Mandir Image"  >-->
+<!--        <img  src="https://www.trawell.in/admin/images/upload/197582881Ajmer_Nareli_Jain_Temple_Main.jpg" alt="Mandir Image"  >-->
+
+
+<!--        <div class="uper-heading" id="Upper-Heading">-->
+<!--            <h5 id="leftName">Email: gyaondayatirth@gmail.com</h5>-->
+<!--            <h5 id="midleName">|| श्री शांतीनाथ जितेंद्राय नमः ||  || श्री मुनीसुव्रतनाथ जितेंद्राय नमः || </h5>-->
+<!--            <h5 id="rightName">CONTACT NUMBER: 9784206110 // 9928091110 </h5>-->
+<!--        </div>-->
+<!--        <h5 >|| श्री शांतीनाथ जितेंद्राय नमः || </h5>-->
+<!--               <span style="float:right;">-->
+<!--                CONTACT NUMBER-->
+<!--               </span>-->
+<!--                <span style="float:left;">-->
+<!--                Email:-->
+<!--               </span>-->
+
+        <p >
+        <h5 style="color: red;">|| श्री शांतीनाथ जितेंद्राय नमः ||
+                <span style="float:right;color: black;">
+                CONTACT NUMBER:: 9784206110 // 9928091110
+                </span>
+                <span style="float:left;color: black;">
+                Email:: gyaondayatirth@gmail.com
+               </span>
+        </h5>
+
+        <h1 >श्री 1008 दिगंबर जैन ज्ञानोदय महा अतिशयकारी तीर्थक्षेत्र,नारेली,अजमेर (राज.)</h1>
+        <h2 > Under: Digambar Jain Samiti,  Ajmer </h2>
+        </p>
+        <h3 style="text-align: center; color: #850921 ">Registration of Society under the Rajasthan Societies Registration Act, 1958:- [ PAN: AAATD3874D ] </h3>
+
+
+    </div>
+    <div >
+        <h3 style="text-align: center">Donor Personal Details </h3>
+    <table id="printTable1" class="center" style="background-color:#D7BDE2  "> <!-- class="table table-striped"-->
+        <tbody>
+        <thead>
+        {% for userlist in user_obj %}
+        <tr>
+
+          <th > Name </th>
+            <td>{{ userlist.applicant_name }}</td>
+        </tr>
+        <tr>
+          <th> Address</th>
+            <td>{{ userlist.applicant_address }}</td>
+        </tr>
+        <tr>
+          <th> State</th>
+            <td>{{ userlist.applicant_state }}</td>
+        </tr>
+         <tr>
+          <th>Mobile Number </th>
+            <td>{{ userlist.applicant_donor_details }}</td>
+        </tr>
+
+        </thead>
+        </tbody>
+        {% endfor %}
+    </table>
+        <h3 style="text-align: center">Donation Details </h3>
+    <table id="printTable2"  class="center" style="background-color:#D1F2EB " >
+        <tbody>
+        <thead>
+        {% for userlist in user_obj %}
+        <tr>
+          <th> Donation Date</th>
+            <td>{{ userlist.donation_date }}</td>
+        </tr>
+        <tr>
+          <th>Donation Deposite Date </th>
+            <td>{{ userlist.donation_deposit_date }}</td>
+        </tr>
+        <tr>
+          <th> Donation Category</th>
+            <td>{{ userlist.Donation_Category }}</td>
+        </tr>
+        <tr>
+          <th>Promise to donate total amount of money</th>
+            <td>{{ userlist.donation_amount }}</td>
+        </tr>
+        <tr>
+          <th>Current received amount </th>
+            <td>{{ userlist.current_received_amount }}</td>
+        </tr>
+        <tr>
+          <th>Total painding amount </th>
+            <td>{{ userlist.total_painding_amount }}</td>
+        </tr>
+        <tr>
+          <th>Total received amount </th>
+            <td>{{ userlist.total_received_amount }}</td>
+        </tr>
+
+        </thead>
+        </tbody>
+        {% endfor %}
+    </table>
+    </div>
+    <br>
+
+    <div  style="text-align: center;">
+        <p class="centered">
+        <h3 style="color:green">Thanks for your Donation!</h3>
+                <br><br>Signature</p>
+        <input type="button" onclick="javascript:printDiv('printTable')" value="Print!"/>        
+    </div>
+    <div id="print-content">
+     <form>
+        
+    </form>
+   </div>
+</body>
+</html>
+<script type="text/javascript">
+           function printDiv(divID) {
+        
+        window.print();
+       
+    }
+</script>
+{% else %}
+    <p>No user are available.</p>
+{% endif %} 

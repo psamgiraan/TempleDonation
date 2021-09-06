@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{{ form.media }} <!-- for datepicker  -->
+<body >
+    <div class="col-md-4">
+     <table>
+        <ul>
+            {{object}}
+            {{object.id}}
+        </ul>
+
+    </table>
+
+    <a href="{% url 'donation_details_changelist' %}"> <button type="button" style=" color: black">Back to donations list</button></a>
+    </div>
+</body>
+</html>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

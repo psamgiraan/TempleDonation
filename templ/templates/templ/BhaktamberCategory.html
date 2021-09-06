@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <form method="POST" action="" style="background-color:cyan"  novalidate>
+        {% csrf_token %}
+        <table style="text-align: left; color:#0D39EA; background-color:#1AE83F;  ">
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Save">
+        <a href="{% url 'BhaktamberCategory_changelist' %}">Back to bhaktamber list</a>
+    </form>
+
+</body>
+</html>
+
+{% endblock %}

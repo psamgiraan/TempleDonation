@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <div >
+    <form method="POST" action="" style="background-color:#AAAAAC " id="personForm" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+        {% csrf_token %}
+        <table style="text-align: left; color:#0D39EA; background-color:#12FB07 ;  ">
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Save">
+        <a href="{% url 'donors_changelist' %}"><button type="button" style="color: blue">Back to donors list</button></a>
+    </form>
+    </div>
+<!--  STATE CITY DROPDOWN JQUERY CODE -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_state").change(function () {
+      var url = $("#personForm").attr("data-cities-url");
+      var stateId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'state': stateId
+        },
+        success: function (data) {
+          $("#id_city").html(data);
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+.global-container{
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}    
+
+table td:hover {
+    background-color: rgba(0,0,0,.075);
+}
+
+th { white-space: nowrap; }

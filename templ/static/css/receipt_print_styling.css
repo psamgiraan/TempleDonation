@@ -1,0 +1,60 @@
+/*.header img {
+  float: left;
+  width: 280px;
+  height: 180px;
+
+}
+*/
+body {
+    display: block;
+    margin: 0px;
+}
+.header {
+    background: #F8C471;
+
+}
+.header h1 {
+  text-align: center;
+  color:#AB0CA6;
+  margin: 0;
+}
+
+.header h5 {
+    /* position: relative; */
+    text-align: center;
+    margin: 0;
+}
+
+.header h2 {
+    /* position: relative; */
+    margin: 0;
+    color: blue;
+    text-align: center;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+#Upper-Heading {
+  text-align: center;
+}
+#leftName {
+
+  text-align: left;
+  margin-left: 0px;
+  float: left;
+}
+#midleName {
+
+  text-align: center;
+}
+#rightName {
+
+  text-align: right;
+  margin-right: 0px;
+  float: right;
+}
+*/
