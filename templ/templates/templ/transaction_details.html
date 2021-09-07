@@ -1,24 +1,62 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<!--                        Datepicker links                        -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-{{ form.media }} <!-- for datepicker  -->
 <body >
     <div class="col-md-4">
-     <table>
-        <ul>
-            {{object}}
-            {{object.id}}
-        </ul>
 
-    </table>
+        {{ object.donor_details.name }} ({{ object.donor_details.mobile_number }}) <br>
+        Category: {{ object.Bhaktamber_category }} <br>
+        Promised Donation: {{ object.donation_amount }} <br>
+        Status: {{ object.donation_status }} <br>
+        <br>
 
-    <a href="{% url 'donation_details_changelist' %}"> <button type="button" style=" color: black">Back to donations list</button></a>
+        <h4 style=" margin-top:0px; margin-bottom:0px;">Transaction Details:</h4>
+        <h4 style=" margin-top:0px; margin-bottom:0px;">__________________________________</h4>
+        <table class="table" style="text-align: left; ">
+            <thead>
+                <tr>
+                    <th> Received Amount </th>
+                    <th> Received Date </th>
+                </tr>
+            </thead>
+            {% for transaction in object.transaction_details_set.all%}
+                <tbody>
+                    <tr>
+                        <td>{{ transaction.current_received_amount }}</td>
+                        <td>{{ transaction.donation_deposit_date}}</td>
+                     </tr>
+                </tbody>
+            {% endfor %}
+        </table><br><br>
+
+    <form  method="POST" action="" >
+        {% csrf_token %}
+        <input placeholder="Amount" name="amount">
+        <input placeholder="Date" type="text" id="datepicker" name="date">
+        <button value="Add Donation"> Add donation </button>
+    </form>
+
+<!--        Datepicker Jquery               link for code:- https://www.codexworld.com/add-datepicker-to-input-field-jquery-ui/  -->
+    <script>
+        $(function(){
+        $("#datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true
+        });
+        });
+    </script>
+
     </div>
 </body>
 </html>
 
 {% endblock %}
+
 
 
 

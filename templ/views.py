@@ -18,7 +18,7 @@ from django.utils.encoding import force_bytes
 from django.template import loader
 
 from .models import UserDonation,  BhaktamberCategories,Donation_Details, City,Transaction_Details
-from .forms import  UserDonationForm,Donation_DetailsForm,BhaktamberCategoryForm, Transaction_DetailsFormSet, NewUserForm
+from .forms import  UserDonationForm,Donation_DetailsForm,BhaktamberCategoryForm, NewUserForm , Transaction_DetailsFormSet, Transaction_DetailsForm
 
 from .utils import broadcast_sms1
 import datetime
@@ -188,6 +188,7 @@ class DonationTransactionCreate(CreateView):
         return form
 
 
+
 # class DonationDetailsUpdateView(UpdateView):
 #     model = Donation_Details
 #     form_class = Donation_DetailsForm
@@ -200,12 +201,20 @@ class DonationTransactionCreate(CreateView):
 #         return form
 #     template_name = 'templ/DonationDetails.html'
 
-class DonationTransactionDetail(UpdateView):
+class DonationTransactionDetail(DetailView):
     model = Donation_Details
     # fields=('__all__')
     fields = [ 'donation_amount','current_received_amount','donation_deposit_date','donation_status',]
     success_url = reverse_lazy('donation_details_changelist')
-    template_name = 'templ/DonationDetails.html'
+    template_name = 'templ/transaction_details.html'
+
+    # def get_context_dataa(self, **kwargs):
+    #     context = super(DonationTransactionCreate, self).get_context_dataa(**kwargs)
+    #     context['transaction_details'] = Donation_Details.objects.all()
+    #     return context
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
 
     def get_context_data(self, **kwargs):
         data = super(DonationTransactionDetail, self).get_context_data(**kwargs)
@@ -228,8 +237,9 @@ class DonationTransactionDetail(UpdateView):
     def get_form(self):
         form = super().get_form()
         # form.fields['donation_date'].widget = DatePickerInput()
-        form.fields['donation_deposit_date'].widget = DatePickerInput()
+        form.fields['Date'].widget = DatePickerInput()
         return form
+
 
 class Donation_DetailsDelete(DeleteView):
     model = Donation_Details

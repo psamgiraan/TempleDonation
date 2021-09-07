@@ -61,7 +61,7 @@ class Transaction_DetailsForm(ModelForm):
         fields = ('__all__')
         exclude = ()
 
-Transaction_DetailsFormSet = inlineformset_factory(Donation_Details, Transaction_Details, form=Transaction_DetailsForm, extra=1)
+Transaction_DetailsFormSet = inlineformset_factory(Donation_Details, Transaction_Details, form=Transaction_DetailsForm, extra=0)
 
 
 class BhaktamberCategoryForm(ModelForm):
